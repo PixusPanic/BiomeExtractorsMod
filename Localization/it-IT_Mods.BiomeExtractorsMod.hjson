@@ -821,6 +821,16 @@ Text: {
 		// ug_astral_forest: Underground Astral Infection
 		// ug_astral_snow: Underground Astral Snow
 		// ug_astral_desert: Underground Astral Desert
+		// savanna: Savanna
+		// salt_flats: Salt Flats
+		// arbor: Arbor
+		// verdant: Verdant
+		// confection_forest: The Confection
+		// ug_confection: Underground Confection
+		// confection_desert: Confection Desert
+		// ug_confection_desert: Underground Confection Desert
+		// confection_snow: Confection Snow
+		// ug_confection_snow: Underground Confection Snow
 	}
 
 	PoolSubNames: {

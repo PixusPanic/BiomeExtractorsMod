@@ -197,7 +197,7 @@ namespace BiomeExtractorsMod.Common.Database
         //        }
 
         /// <summary>
-        /// An identifier object that details an item pool's name and behavior.
+        /// An identifier object that details an modItem pool's name and behavior.
         /// </summary>
         /// <param name="name"> The PoolEntry's identification string.</param>
         /// <param name="blocking"> If true, biome scans will not scan priority values lower than the one this pool has if this pool is found.</param>
@@ -266,7 +266,7 @@ namespace BiomeExtractorsMod.Common.Database
             }
 
             /// <summary>
-            /// An identifier object that details an item pool's name and behavior.
+            /// An identifier object that details an modItem pool's name and behavior.
             /// </summary>
             /// <param name="name"> The PoolEntry's identification string.</param>
             /// <param name="localizationKey">If set, this pool will use this string to query its localized name.<br/>
@@ -275,14 +275,14 @@ namespace BiomeExtractorsMod.Common.Database
         }
 
         /// <summary>
-        /// An identifier object that details an item entry inside a pool, complete with minimum and maximum drop values.
+        /// An identifier object that details an modItem entry inside a pool, complete with minimum and maximum drop values.
         /// </summary>
-        /// <param name="item"> The id of the item represented by this entry.</param>
+        /// <param name="item"> The id of the modItem represented by this entry.</param>
         /// <param name="min"> Minimum amount of copies generated if this entry is chosen.</param>
         /// <param name="max"> Maximum amount of copies generated if this entry is chosen.</param>
         public class ItemEntry(short item, int min, int max)
         {
-            ///<summary>The id of the item represented by this entry</summary>
+            ///<summary>The id of the modItem represented by this entry</summary>
             public short Id { get; private set; } = item;
             ///<summary>Minimum amount of copies generated if this entry is chosen.</summary>
             public int Min { get; private set; } = min;
@@ -292,9 +292,9 @@ namespace BiomeExtractorsMod.Common.Database
             public int Roll { get => Main.rand.Next(Min, Max + 1); }
 
             /// <summary>
-            /// An identifier object that details an item entry inside a pool, complete with minimum and maximum drop values.
+            /// An identifier object that details an modItem entry inside a pool, complete with minimum and maximum drop values.
             /// </summary>
-            /// <param name="item"> The id of the item represented by this entry.</param>
+            /// <param name="item"> The id of the modItem represented by this entry.</param>
             /// <param name="count"> The amount of copies generated if this entry is chosen.</param>
             public ItemEntry(short item, int count) : this(item, count, count) { }
 
@@ -888,9 +888,9 @@ namespace BiomeExtractorsMod.Common.Database
         /// <summary>
         /// Creates a new PoolEntry and:
         /// <list type="bullet">
-        /// <item><description>Registers it</description></item>
-        /// <item><description>Adds it to the main Pool Priority queue</description></item>
-        /// <item><description>Creates a new list of ItemEntries assigned to it.</description></item>
+        /// <modItem><description>Registers it</description></modItem>
+        /// <modItem><description>Adds it to the main Pool Priority queue</description></modItem>
+        /// <modItem><description>Creates a new list of ItemEntries assigned to it.</description></modItem>
         /// </list>
         /// This entry will be registered as blocking.<br/>
         /// If a pool entry with that name already exists, this method does nothing.
@@ -904,9 +904,9 @@ namespace BiomeExtractorsMod.Common.Database
         /// <summary>
         /// Creates a new PoolEntry and:
         /// <list type="bullet">
-        /// <item><description>Registers it</description></item>
-        /// <item><description>Adds it to the main Pool Priority queue</description></item>
-        /// <item><description>Creates a new list of ItemEntries assigned to it.</description></item>
+        /// <modItem><description>Registers it</description></modItem>
+        /// <modItem><description>Adds it to the main Pool Priority queue</description></modItem>
+        /// <modItem><description>Creates a new list of ItemEntries assigned to it.</description></modItem>
         /// </list>
         /// If a pool entry with that name already exists, this method does nothing.
         /// </summary>
@@ -1114,56 +1114,56 @@ namespace BiomeExtractorsMod.Common.Database
         }
 
         /// <summary>
-        /// Adds a new ItemEntry to a pool.<br/>The item will be registered with a count equal to 1.
+        /// Adds a new ItemEntry to a pool.<br/>The modItem will be registered with a count equal to 1.
         /// </summary>
-        /// <param name="poolName">The name of the pool to add the item to.</param>
-        /// <param name="itemId">The id of the item to add</param>
-        /// <param name="weight">The weight of probability associated to this ItemEntry.<br/>The higher the weight, the more common the item is.</param>
-        /// <returns><see langword="true"/> if the method found a pool to add the item to, <see langword="false"/> otherwise</returns>
+        /// <param name="poolName">The name of the pool to add the modItem to.</param>
+        /// <param name="itemId">The id of the modItem to add</param>
+        /// <param name="weight">The weight of probability associated to this ItemEntry.<br/>The higher the weight, the more common the modItem is.</param>
+        /// <returns><see langword="true"/> if the method found a pool to add the modItem to, <see langword="false"/> otherwise</returns>
         public bool AddItemInPool(string poolName, short itemId, int weight) => AddItemInPool(poolName, new ItemEntry(itemId, 1), weight);
         /// <summary>
-        /// Adds a new ItemEntry to a pool.<br/>The item will be registered with a count equal to 1.
+        /// Adds a new ItemEntry to a pool.<br/>The modItem will be registered with a count equal to 1.
         /// </summary>
-        /// <param name="poolName">The name of the pool to add the item to.</param>
-        /// <param name="itemId">The id of the item to add</param>
-        /// <param name="weight">A fraction that corresponds to the weight of probability associated to this ItemEntry.<br/>The higher the weight, the more common the item is.</param>
-        /// <returns><see langword="true"/> if the method found a pool to add the item to, <see langword="false"/> otherwise</returns>
+        /// <param name="poolName">The name of the pool to add the modItem to.</param>
+        /// <param name="itemId">The id of the modItem to add</param>
+        /// <param name="weight">A fraction that corresponds to the weight of probability associated to this ItemEntry.<br/>The higher the weight, the more common the modItem is.</param>
+        /// <returns><see langword="true"/> if the method found a pool to add the modItem to, <see langword="false"/> otherwise</returns>
         public bool AddItemInPool(string poolName, short itemId, Fraction weight) => AddItemInPool(poolName, new ItemEntry(itemId, 1), weight);
         /// <summary>
         /// Adds a new ItemEntry to a pool.
         /// </summary>
-        /// <param name="poolName">The name of the pool to add the item to.</param>
-        /// <param name="itemId">The id of the item to add</param>
-        /// <param name="count">The amount of the given item this entry will contain.<br/>
+        /// <param name="poolName">The name of the pool to add the modItem to.</param>
+        /// <param name="itemId">The id of the modItem to add</param>
+        /// <param name="count">The amount of the given modItem this entry will contain.<br/>
         /// Use <see cref="AddItemInPool(string, ItemEntry, int)"/> if you need to make it a range.</param>
-        /// <param name="weight">The weight of probability associated to this ItemEntry.<br/>The higher the weight, the more common the item is.</param>
-        /// <returns><see langword="true"/> if the method found a pool to add the item to, <see langword="false"/> otherwise</returns>
+        /// <param name="weight">The weight of probability associated to this ItemEntry.<br/>The higher the weight, the more common the modItem is.</param>
+        /// <returns><see langword="true"/> if the method found a pool to add the modItem to, <see langword="false"/> otherwise</returns>
         public bool AddItemInPool(string poolName, short itemId, int count = 1, int weight = 1) => AddItemInPool(poolName, new ItemEntry(itemId, count), weight);
         /// <summary>
         /// Adds a new ItemEntry to a pool.
         /// </summary>
-        /// <param name="poolName">The name of the pool to add the item to.</param>
-        /// <param name="itemId">The id of the item to add</param>
-        /// <param name="count">The amount of the given item this entry will contain.<br/>
+        /// <param name="poolName">The name of the pool to add the modItem to.</param>
+        /// <param name="itemId">The id of the modItem to add</param>
+        /// <param name="count">The amount of the given modItem this entry will contain.<br/>
         /// Use <see cref="AddItemInPool(string, ItemEntry, int)"/> if you need to make it a range.</param>
-        /// <param name="weight">A fraction that corresponds to the weight of probability associated to this ItemEntry.<br/>The higher the weight, the more common the item is.</param>
-        /// <returns><see langword="true"/> if the method found a pool to add the item to, <see langword="false"/> otherwise</returns>
+        /// <param name="weight">A fraction that corresponds to the weight of probability associated to this ItemEntry.<br/>The higher the weight, the more common the modItem is.</param>
+        /// <returns><see langword="true"/> if the method found a pool to add the modItem to, <see langword="false"/> otherwise</returns>
         public bool AddItemInPool(string poolName, short itemId, int count, Fraction weight) => AddItemInPool(poolName, new ItemEntry(itemId, count), weight);
         /// <summary>
         /// Adds a new ItemEntry to a pool.
         /// </summary>
-        /// <param name="poolName">The name of the pool to add the item to.</param>
+        /// <param name="poolName">The name of the pool to add the modItem to.</param>
         /// <param name="item">The ItemEntry to add</param>
-        /// <param name="weight">The weight of probability associated to this ItemEntry.<br/>The higher the weight, the more common the item is.</param>
-        /// <returns><see langword="true"/> if the method found a pool to add the item to, <see langword="false"/> otherwise</returns>
+        /// <param name="weight">The weight of probability associated to this ItemEntry.<br/>The higher the weight, the more common the modItem is.</param>
+        /// <returns><see langword="true"/> if the method found a pool to add the modItem to, <see langword="false"/> otherwise</returns>
         public bool AddItemInPool(string poolName, ItemEntry item, int weight) => AddItemInPool(poolName, item, new Fraction(weight));
         /// <summary>
         /// Adds a new ItemEntry to a pool.
         /// </summary>
-        /// <param name="poolName">The name of the pool to add the item to.</param>
+        /// <param name="poolName">The name of the pool to add the modItem to.</param>
         /// <param name="item">The ItemEntry to add</param>
-        /// <param name="weight">A fraction that corresponds to the weight of probability associated to this ItemEntry.<br/>The higher the weight, the more common the item is.</param>
-        /// <returns><see langword="true"/> if the method found a pool to add the item to, <see langword="false"/> otherwise</returns>
+        /// <param name="weight">A fraction that corresponds to the weight of probability associated to this ItemEntry.<br/>The higher the weight, the more common the modItem is.</param>
+        /// <returns><see langword="true"/> if the method found a pool to add the modItem to, <see langword="false"/> otherwise</returns>
         public bool AddItemInPool(string poolName, ItemEntry item, Fraction weight)
         {
             PoolEntry pool = GetPoolEntry(poolName);
@@ -1182,7 +1182,7 @@ namespace BiomeExtractorsMod.Common.Database
         }
 
         /// <summary>
-        /// Adds every single item inside the source pool into the destination pool.
+        /// Adds every single modItem inside the source pool into the destination pool.
         /// Any previously added entry is retained. Any newly added entry will only be in one pool.
         /// </summary>
         /// <param name="poolDest">The name of the pool to add the items to.</param>
@@ -1202,7 +1202,7 @@ namespace BiomeExtractorsMod.Common.Database
         }
 
         /// <summary>
-        /// Makes the destination pool's item list equal to the source's.
+        /// Makes the destination pool's modItem list equal to the source's.
         /// Any previously added entry is removed. Any newly added entry will be added to both pools.
         /// This operation cannot be undone.
         /// </summary>
@@ -1231,17 +1231,17 @@ namespace BiomeExtractorsMod.Common.Database
         /// <summary>
         /// Removes an ItemEntry from a pool.
         /// </summary>
-        /// <param name="poolName">The name of the pool to remove the item from.</param>
-        /// <param name="itemId">The id of the item to remove</param>
-        /// <param name="count">The amount of the given item the target entry contains.</param>
+        /// <param name="poolName">The name of the pool to remove the modItem from.</param>
+        /// <param name="itemId">The id of the modItem to remove</param>
+        /// <param name="count">The amount of the given modItem the target entry contains.</param>
         /// <returns><see langword="true"/> if the pool exists and it contained the target entry, <see langword="false"/> otherwise</returns>
         public bool RemoveItemFromPool(string poolName, short itemId, int count) => RemoveItemFromPool(poolName, new ItemEntry(itemId, count));
 
         /// <summary>
         /// Removes all ItemEntry objects that correspond to the given <paramref name="itemId"/> from a pool.
         /// </summary>
-        /// <param name="poolName">The name of the pool to remove the item from.</param>
-        /// <param name="itemId">The id of the item to remove</param>
+        /// <param name="poolName">The name of the pool to remove the modItem from.</param>
+        /// <param name="itemId">The id of the modItem to remove</param>
         /// <returns><see langword="true"/> if the pool exists and it contained the target entry, <see langword="false"/> otherwise</returns>
         public bool RemoveItemFromPool(string poolName, short itemId)
         {
@@ -1266,7 +1266,7 @@ namespace BiomeExtractorsMod.Common.Database
         /// <summary>
         /// Removes an ItemEntry from a pool.
         /// </summary>
-        /// <param name="poolName">The name of the pool to remove the item from.</param>
+        /// <param name="poolName">The name of the pool to remove the modItem from.</param>
         /// <param name="item">The ItemEntry to remove</param>
         /// <returns><see langword="true"/> if the pool exists and it contained the target entry, <see langword="false"/> otherwise</returns>
         public bool RemoveItemFromPool(string poolName, ItemEntry item)
@@ -1284,7 +1284,7 @@ namespace BiomeExtractorsMod.Common.Database
         /// <summary>
         /// Removes all ItemEntries in a pool.
         /// </summary>
-        /// <param name="poolName">The name of the pool to remove the item from.</param>
+        /// <param name="poolName">The name of the pool to remove the modItem from.</param>
         /// <returns><see langword="true"/> if the pool exists, <see langword="false"/> otherwise</returns>
         public bool FlushPoolItems(string poolName)
         {
@@ -1299,6 +1299,71 @@ namespace BiomeExtractorsMod.Common.Database
                 }
             }
             _itemPools[pool.Name].Clear();
+            return false;
+        }
+
+        /// <summary>
+        /// Identical to AddItemInPool, but safely gets a ModItem and, if the modItem is found, add the ItemEntry to a pool.
+        /// If the modItem or pool cannot be found, skip over it.
+        /// </summary>
+        /// <param name="poolName">The name of the pool to add the modItem to.</param>
+        /// <param name="modName">The name of the mod that adds this item.</param>
+        /// <param name="modItem">The name of the item to add.</param>
+        /// <param name="weight">A fraction that corresponds to the weight of probability associated to this ItemEntry.<br/>The higher the weight, the more common the modItem is.</param>
+        /// <returns><see langword="true"/> if the method found a ModItem and found a pool to add it to, <see langword="false"/> otherwise</returns>
+        public bool SafelyGetModItem(string poolName, string modName, string modItem, int weight)
+        {
+            if (ModContent.TryFind(modName, modItem, out ModItem item) && AddItemInPool(poolName, (short)item.Type, weight)) return true;
+            return false;
+        }
+
+        /// <summary>
+        /// Identical to AddItemInPool, but safely gets a ModItem and, if the modItem is found, add the ItemEntry to a pool.
+        /// If the modItem or pool cannot be found, skip over it.
+        /// </summary>
+        /// <param name="poolName">The name of the pool to add the modItem to.</param>
+        /// <param name="fullName">The name of the mod that adds this item, and the name of the item to add ("ExampleMod/ExampleItem").</param>
+        /// <param name="weight">A fraction that corresponds to the weight of probability associated to this ItemEntry.<br/>The higher the weight, the more common the modItem is.</param>
+        /// <returns><see langword="true"/> if the method found a ModItem and found a pool to add it to, <see langword="false"/> otherwise</returns>
+        public bool SafelyGetModItem(string poolName, string fullName, int weight)
+        {
+            if (ModContent.TryFind(fullName, out ModItem item) && AddItemInPool(poolName, (short)item.Type, weight)) return true;
+            return false;
+        }
+
+        /// <summary>
+        /// Identical to AddItemInPool, but safely gets a ModItem and, if the modItem is found, add the ItemEntry to a pool.
+        /// If the modItem or pool cannot be found, skip over it.
+        /// </summary>
+        /// <param name="poolName">The name of the pool to add the modItem to.</param>
+        /// <param name="modName">The name of the mod that adds this item.</param>
+        /// <param name="modItem">The name of the item to add.</param>
+        /// <param name="weight">A fraction that corresponds to the weight of probability associated to this ItemEntry.<br/>The higher the weight, the more common the modItem is.</param>
+        /// <returns><see langword="true"/> if the method found a ModItem and found a pool to add it to, <see langword="false"/> otherwise</returns>
+        public bool SafelyGetModItem(string poolName, string modName, string modItem, Fraction weight)
+        {
+            if (ModContent.TryFind(modName, modItem, out ModItem item) && AddItemInPool(poolName, (short)item.Type, weight)) return true;
+            return false;
+        }
+
+        /// <summary>
+        /// Identical to AddItemInPool, but safely gets a ModItem and, if the modItem is found, add the ItemEntry to a pool.
+        /// If the modItem or pool cannot be found, skip over it.
+        /// </summary>
+        /// <param name="poolName">The name of the pool to add the modItem to.</param>
+        /// <param name="fullName">The name of the mod that adds this item, and the name of the item to add ("ExampleMod/ExampleItem").</param>
+        /// <param name="weight">A fraction that corresponds to the weight of probability associated to this ItemEntry.<br/>The higher the weight, the more common the modItem is.</param>
+        /// <returns><see langword="true"/> if the method found a ModItem and found a pool to add it to, <see langword="false"/> otherwise</returns>
+        public bool SafelyGetModItem(string poolName, string fullName, Fraction weight)
+        {
+            if (ModContent.TryFind(fullName, out ModItem item) && AddItemInPool(poolName, (short)item.Type, weight)) return true;
+            return false;
+        }
+
+        public bool SafelyGetModItemEntry(string poolName, string modName, string modItem, int min, int max, int weight)
+        {
+            if (ModContent.TryFind(modName, modItem, out ModItem item) &&
+                AddItemInPool(poolName, new ItemEntry((short)item.Type, min, max), weight)) return true;
             return false;
         }
 
